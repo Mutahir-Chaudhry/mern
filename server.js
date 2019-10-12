@@ -7,6 +7,11 @@ const PORT = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join("client", "build")));
+    app.get("/", (req, res) => {
+        res.sendFile(
+         path.join(__dirname, "client", "build", "index.html")
+        );
+      });
 }
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/my_database", {
