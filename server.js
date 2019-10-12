@@ -5,6 +5,10 @@ const bodyParser = require("body-parser")
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join("client", "build")));
+}
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/my_database", {
   useNewUrlParser: true,
   useUnifiedTopology: true
